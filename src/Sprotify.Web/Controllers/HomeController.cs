@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -10,10 +11,12 @@ namespace Sprotify.Web.Controllers
     public class HomeController : Controller
     {
         private readonly SubscriptionService _service;
+        private readonly AlbumService _albumService;
 
-        public HomeController(SubscriptionService service)
+        public HomeController(SubscriptionService service, AlbumService albumService)
         {
             _service = service;
+            _albumService = albumService;
         }
 
         public async Task<IActionResult> Index()
@@ -22,9 +25,10 @@ namespace Sprotify.Web.Controllers
             return View(subscriptions.OrderBy(x => x.PricePerMonth));
         }
 
-        public IActionResult About()
+        public async Task<IActionResult> About()
         {
-            return View();
+            var albums = await _albumService.GetAlbumsWithSongs();
+            return View(albums);
         }
 
         public IActionResult Error()

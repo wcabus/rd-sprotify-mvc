@@ -20,6 +20,7 @@ namespace Sprotify.Application
             services.AddScoped<UnitOfWork>();
             services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IAlbumRepository, AlbumRepository>();
 
             services.AddScoped<ISubscriptionService, SubscriptionService>();
             services.AddScoped<IUserService, UserService>();

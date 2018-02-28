@@ -30,8 +30,10 @@ namespace Sprotify.Web
 
             // Add services
             services.AddScoped<SprotifyHttpClient>();
+
             services.AddScoped<SubscriptionService>();
             services.AddScoped<UserService>();
+            services.AddScoped<AlbumService>();
 
             // Authentication
             services.AddAuthentication(options =>

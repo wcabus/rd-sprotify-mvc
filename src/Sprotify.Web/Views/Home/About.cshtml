@@ -1,13 +1,51 @@
-﻿@{
+﻿@model IEnumerable<AlbumWithSongs>
+@{
     ViewData["Title"] = "About";
 }
 
 <div class="container container-content">
     <div class="row">
         <div class="col-md-12">
-            <h2>About</h2>
+            <h2>Albums</h2>
 
-            Some content here...
+            <table class="table table-striped table-bordered">
+                <tr>
+                    <th>Title</th>
+                    <th>Band</th>
+                    <th>Release Date</th>
+                    <th>Songs</th>
+                </tr>
+                @foreach (var album in Model)
+                {
+                <tr>
+                    <td>
+                        @if (string.IsNullOrEmpty(album.Art))
+                        {
+                            @album.Title
+                        }
+                        else
+                        {
+                            <img src="@album.Art" style="max-height: 80px" alt="@album.Title"/>
+                            @album.Title
+                        }
+                    </td>
+                    <td>
+                        @album.BandName
+                    </td>
+                    <td>
+                        @album.ReleaseDate?.ToLongDateString()
+                    </td>
+                    <td>
+                        <ul>
+                            @foreach (var title in album.Songs)
+                            {
+                                <li>@title</li>
+                            }
+                        </ul>
+                    </td>
+                </tr>
+                }
+            </table>
         </div>
     </div>
 </div>
