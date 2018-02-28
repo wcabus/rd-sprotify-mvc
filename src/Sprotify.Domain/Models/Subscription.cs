@@ -4,7 +4,7 @@ namespace Sprotify.Domain.Models
 {
     public class Subscription
     {
-        protected internal Subscription() { }
+        public Subscription() { }
 
         public Subscription(string title, string description, decimal pricePerMonth, bool hasAdvertisements, bool canOnlyShuffle, bool canPlayOffline, bool hasHighQualityStreams)
         {

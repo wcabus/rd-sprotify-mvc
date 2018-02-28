@@ -11,12 +11,14 @@ namespace Sprotify.Web.Controllers
     public class HomeController : Controller
     {
         private readonly SubscriptionService _service;
-        private readonly AlbumService _albumService;
+        private readonly UserService _userService;
+        private readonly SongService _songService;
 
-        public HomeController(SubscriptionService service, AlbumService albumService)
+        public HomeController(SubscriptionService service, UserService userService, SongService songService)
         {
             _service = service;
-            _albumService = albumService;
+            _userService = userService;
+            _songService = songService;
         }
 
         public async Task<IActionResult> Index()
@@ -27,8 +29,8 @@ namespace Sprotify.Web.Controllers
 
         public async Task<IActionResult> About()
         {
-            var albums = await _albumService.GetAlbumsWithSongs();
-            return View(albums);
+            var songs = await _songService.GetAllSongs();
+            return View(songs.OrderBy(x => x.Band).ThenBy(x => x.Album).ThenBy(x => x.Position));
         }
 
         public IActionResult Error()

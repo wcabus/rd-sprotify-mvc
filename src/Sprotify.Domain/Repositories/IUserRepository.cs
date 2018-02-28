@@ -9,5 +9,6 @@ namespace Sprotify.Domain.Repositories
         Task<User> GetById(Guid id);
 
         User Create(User user);
+        Task<bool> Exists(Guid userId);
     }
 }

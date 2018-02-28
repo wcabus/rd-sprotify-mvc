@@ -18,6 +18,11 @@ namespace Microsoft.AspNetCore.Mvc
             return claimsPrincipal.GetFirstClaimValue("given_name");
         }
 
+        public static string GetSurname(this ClaimsPrincipal claimsPrincipal)
+        {
+            return claimsPrincipal.GetFirstClaimValue("family_name");
+        }
+
         public static string GetFirstClaimValue(this ClaimsPrincipal claimsPrincipal, string claimType)
         {
             return claimsPrincipal.Claims.FirstOrDefault(x => x.Type == claimType)?.Value;

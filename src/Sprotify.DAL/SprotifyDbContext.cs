@@ -132,7 +132,7 @@ namespace Sprotify.DAL
                 return;
             }
 
-            var moby = new Band {Name = "Moby", Albums = new List<Album>()};
+            var moby = new Band("Moby");
             moby.Albums.Add(new Album
                 {
                     Title = "Play",
@@ -263,7 +263,7 @@ namespace Sprotify.DAL
                     }
                 });
 
-            var daftPunk = new Band {Name = "Daft Punk", Albums = new List<Album>()};
+            var daftPunk = new Band("Daft Punk");
             daftPunk.Albums.Add(new Album
             {
                 Title = "Homework",

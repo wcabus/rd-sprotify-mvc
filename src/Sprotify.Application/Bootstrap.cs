@@ -20,10 +20,17 @@ namespace Sprotify.Application
             services.AddScoped<UnitOfWork>();
             services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ISongRepository, SongRepository>();
+            services.AddScoped<IBandRepository, BandRepository>();
             services.AddScoped<IAlbumRepository, AlbumRepository>();
+            services.AddScoped<IPlaylistRepository, PlaylistRepository>();
 
             services.AddScoped<ISubscriptionService, SubscriptionService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ISongService, SongService>();
+            services.AddScoped<IBandService, BandService>();
+            services.AddScoped<IAlbumService, AlbumService>();
+            services.AddScoped<IPlaylistService, PlaylistService>();
         }
     }
 }

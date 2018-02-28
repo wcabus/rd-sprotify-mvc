@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Sprotify.Web.Models
 {
@@ -7,13 +7,14 @@ namespace Sprotify.Web.Models
     {
         public Guid Id { get; set; }
         public string Title { get; set; }
-        public DateTime? ReleaseDate { get; set; }
-        public string Art { get; set; }
-        public string BandName { get; set; }
-    }
 
-    public class AlbumWithSongs : Album
-    {
-        public List<string> Songs { get; set; }
+        [Display(Name = "Release date")]
+        public DateTimeOffset? ReleaseDate { get; set; }
+
+        [Display(Name = "Album art")]
+        [DataType(DataType.ImageUrl), Url]
+        public string Art { get; set; }
+
+        public string Band { get; set; }
     }
 }

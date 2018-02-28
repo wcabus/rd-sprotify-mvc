@@ -238,7 +238,7 @@
 
                 <div class="col-xs-12 col-md-2">
                     <div class="footer-logo">
-                        <a href="/uk/home/">Sprotify</a>
+                        <a asp-area="" asp-controller="Home" asp-action="Index">Sprotify</a>
                     </div>
                 </div>
 
@@ -247,7 +247,7 @@
                     <ul class="nav">
 
                         <li>
-                            <a href="/uk/about-us/contact/" id="nav-link-about" data-ga-category="menu" data-ga-action="about">
+                            <a asp-area="" asp-controller="Home" asp-action="About" id="nav-link-about" data-ga-category="menu" data-ga-action="about">
                                 About
                             </a>
                         </li>
@@ -314,7 +314,7 @@
                         </li>
 
                         <li class="hidden-xs ">
-                            <a href="/uk/redirect/webplayerlink/?utm_medium=www_footer" id="nav-link-play" data-ga-category="menu" data-ga-action="play">
+                            <a asp-area="" asp-controller="Player" asp-action="Index" id="nav-link-play" data-ga-category="menu" data-ga-action="play">
                                 Web Player
                             </a>
                         </li>
@@ -393,7 +393,7 @@
                         </div>
                     </a>
 
-                    <small class="copyright">© 2017 Sprotify</small>
+                    <small class="copyright">© @DateTime.Now.Year Sprotify</small>
                 </div>
             </nav>
         </div>

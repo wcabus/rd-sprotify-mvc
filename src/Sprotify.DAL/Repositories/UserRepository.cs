@@ -17,12 +17,19 @@ namespace Sprotify.DAL.Repositories
 
         public Task<User> GetById(Guid id)
         {
-            return _context.Set<User>().FirstOrDefaultAsync(x => x.Id == id);
+            return _context.Set<User>()
+                .Include(x => x.Subscriptions)
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public User Create(User user)
         {
             return _context.Set<User>().Add(user).Entity;
+        }
+
+        public Task<bool> Exists(Guid userId)
+        {
+            return _context.Set<User>().AnyAsync(x => x.Id == userId);
         }
     }
 }
