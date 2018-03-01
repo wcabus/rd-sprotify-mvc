@@ -1,0 +1,20 @@
+[HttpGet, AllowAnonymous]
+GetAlbums([FromQuery]string filter = null) 
+{
+	_service.GetAlbums(filter) --------------|
+                                                 v
+	OK with Mapper.Map<IEnumerable<Album>>(albums);
+}
+
+[HttpGet(/bands/bandId/albums)]
+GetAlbumsForBand(bandId)
+	Band exists, if not NotFound
+
+Mapper.Map<IEnumerable<Album>>(albums);
+
+
+========== VOOR DE RAPPE ================
+
+MVC => AlbumService => Get("albums") 
+    => Startup.cs   => AddScoped<AlbumService>();
+

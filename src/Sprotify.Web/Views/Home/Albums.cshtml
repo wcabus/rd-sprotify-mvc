@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Sprotify.Web.Models.Album>
+
+@{
+    ViewData["Title"] = "Albums";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Albums</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReleaseDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Art)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Band)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @if (!string.IsNullOrEmpty(item.Art))
+                {
+                    <img src="@item.Art" alt="@item.Title" title="@item.Title" class="img-thumbnail img-responsive" style="max-height: 120px"/> 
+                    <span>@item.Title</span>
+                }
+                else
+                {
+                @Html.DisplayFor(modelItem => item.Title)
+                }
+            </td>
+            <td>
+                @item.ReleaseDate?.ToString("d")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Band)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

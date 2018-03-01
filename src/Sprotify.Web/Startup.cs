@@ -34,6 +34,7 @@ namespace Sprotify.Web
             services.AddScoped<SubscriptionService>();
             services.AddScoped<UserService>();
             services.AddScoped<SongService>();
+            services.AddScoped<AlbumService>();
 
             // Authentication
             services.AddAuthentication(options =>

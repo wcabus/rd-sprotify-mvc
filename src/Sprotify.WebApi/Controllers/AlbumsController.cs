@@ -23,6 +23,13 @@ namespace Sprotify.WebApi.Controllers
             _service = service;
         }
 
+        [HttpGet, AllowAnonymous]
+        public async Task<IActionResult> GetAlbums([FromQuery]string filter = null) 
+        {
+            var albums = await _service.GetAlbums(filter);
+	        return Ok(Mapper.Map<IEnumerable<Album>>(albums));
+        }
+
         [HttpGet("{id:guid}", Name = nameof(GetAlbumById))]
         public async Task<IActionResult> GetAlbumById(Guid id, 
             [FromQuery]bool includeSongs = false)
@@ -36,6 +43,18 @@ namespace Sprotify.WebApi.Controllers
 
             // TODO Refactor: includeSongs == true => Map to album with songs
             return Ok(Mapper.Map<Album>(album));
+        }
+
+        [HttpGet("/bands/{bandId:guid}/albums")]
+        public async Task<IActionResult> GetAlbumsForBand(Guid bandId)
+        {
+            if (!await _service.BandExists(bandId))
+            {
+                return NotFound();
+            }
+
+            var albums = await _service.GetAlbumsForBand(bandId);
+            return Ok(Mapper.Map<IEnumerable<Album>>(albums));
         }
 
         [HttpGet("/bands/{bandId:guid}/albums/{id:guid}", Name = nameof(GetAlbumForBandById))]
