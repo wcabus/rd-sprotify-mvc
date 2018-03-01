@@ -52,5 +52,10 @@ namespace Sprotify.Web.Controllers
             var redirectUrl = Url.Action("Login", "Account", null, "https");
             return Redirect($"{_configuration.GetValue<string>("Authority")}signup?returnUrl={redirectUrl}");
         }
+
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
     }
 }

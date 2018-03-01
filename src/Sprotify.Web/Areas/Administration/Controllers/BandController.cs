@@ -11,7 +11,7 @@ using Sprotify.Web.Services;
 namespace Sprotify.Web.Areas.Administration.Controllers
 {
     [Area("Administration")]
-    [Authorize]
+    [Authorize(Roles = "admin")]
     public class BandController : Controller
     {
         private readonly BandService _service;

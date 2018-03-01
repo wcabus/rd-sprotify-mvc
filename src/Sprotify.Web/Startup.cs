@@ -3,6 +3,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OAuth.Claims;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -58,9 +59,13 @@ namespace Sprotify.Web
                     options.Scope.Add("email");
                     options.Scope.Add("profile");
                     options.Scope.Add("offline_access");
+                    options.Scope.Add("roles"); // Added if you want to have roles in the id_token (MVC) as well
                     options.Scope.Add(Configuration.GetValue<string>("ApiName"));
 
                     options.ResponseType = "code id_token";
+
+                    // Needed to automap the role claim
+                    options.ClaimActions.Add(new JsonKeyClaimAction("role", "role", "role"));
 
                     options.Events = new OpenIdConnectEvents
                     {
