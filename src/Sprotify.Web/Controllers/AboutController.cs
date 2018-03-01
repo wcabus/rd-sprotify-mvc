@@ -16,9 +16,9 @@ namespace Sprotify.Web.Controllers
             _service = service;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index([FromQuery]string filter = null)
         {
-            var albums = await _service.GetAlbums();
+            var albums = await _service.GetAlbums(filter);
             return View(albums);
         }
     }

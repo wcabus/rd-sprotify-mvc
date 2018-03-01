@@ -13,9 +13,9 @@ namespace Sprotify.Web.Services
         {
         }
 
-        public Task<IEnumerable<Album>> GetAlbums()
+        public Task<IEnumerable<Album>> GetAlbums(string filter = null)
         {
-            return Get<IEnumerable<Album>>("albums");
+            return Get<IEnumerable<Album>>($"albums?filter={filter}");
         }
     }
 }
