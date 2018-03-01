@@ -35,6 +35,7 @@ namespace Sprotify.Web
             services.AddScoped<UserService>();
             services.AddScoped<SongService>();
             services.AddScoped<AlbumService>();
+            services.AddScoped<BandService>();
 
             // Authentication
             services.AddAuthentication(options =>
@@ -101,6 +102,11 @@ namespace Sprotify.Web
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                    name: "area",
+                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                );
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

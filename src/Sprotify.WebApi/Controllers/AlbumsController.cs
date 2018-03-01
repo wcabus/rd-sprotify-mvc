@@ -79,7 +79,7 @@ namespace Sprotify.WebApi.Controllers
         }
 
         [HttpPost("/bands/{bandId:guid}/albums")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> CreateAlbumForBand
             (Guid bandId, [FromBody] AlbumToCreate model)
         {

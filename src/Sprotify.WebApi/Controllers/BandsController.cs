@@ -43,7 +43,7 @@ namespace Sprotify.WebApi.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> CreateBand([FromBody] BandToCreate model)
         {
             if (!ModelState.IsValid)
