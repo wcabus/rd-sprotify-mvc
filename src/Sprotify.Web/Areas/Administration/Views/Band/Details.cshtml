@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Sprotify.Web.Models.Album>
+
+@{
+    ViewData["Title"] = ViewBag.Band.Name;
+}
+
+<h2>@ViewBag.Band.Name</h2>
+
+<p>
+    <a asp-controller="Album" asp-action="Create" asp-route-band-id="@ViewBag.Band.Id">Add Album</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReleaseDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Art)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Art)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

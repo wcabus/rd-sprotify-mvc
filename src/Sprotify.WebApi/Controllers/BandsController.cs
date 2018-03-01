@@ -57,5 +57,26 @@ namespace Sprotify.WebApi.Controllers
                 new { band.Id },
                 Mapper.Map<Band>(band));
         }
+
+        [HttpPut("{id:guid}")]
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> UpdateBand(Guid id, [FromBody] BandToCreate model)
+        {
+            var band = await _bandService.GetBandById(id);
+            if (band == null)
+            {
+                return NotFound();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            band.Name = model.Name;
+            await _bandService.UpdateBand(band);
+
+            return Ok(Mapper.Map<Band>(band));
+        }
     }
 }

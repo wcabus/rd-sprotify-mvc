@@ -9,6 +9,7 @@ namespace Sprotify.Web.Models
         public string Title { get; set; }
 
         [Display(Name = "Release date")]
+        [DataType(DataType.Date)]
         public DateTimeOffset? ReleaseDate { get; set; }
 
         [Display(Name = "Album art")]

@@ -55,5 +55,25 @@ namespace Sprotify.Web.Services.Core
             var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             return JsonConvert.DeserializeObject<T>(json);
         }
+
+        protected async Task<T> Put<T>(string resource, object data)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
+            var client = await _sprotifyclient.GetClient().ConfigureAwait(false);
+            var response = await client.PutAsync(resource, content).ConfigureAwait(false);
+
+            await ThrowIfUnsuccessful(response).ConfigureAwait(false);
+
+            var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<T>(json);
+        }
+
+        protected async Task Delete(string resource)
+        {
+            var client = await _sprotifyclient.GetClient().ConfigureAwait(false);
+            var response = await client.DeleteAsync(resource).ConfigureAwait(false);
+
+            await ThrowIfUnsuccessful(response).ConfigureAwait(false);
+        }
     }
 }

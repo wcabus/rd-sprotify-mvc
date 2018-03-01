@@ -29,7 +29,17 @@ namespace Sprotify.Web.Services
             return null;
         }
 
+        public Task<IEnumerable<Album>> GetAlbumsForBand(Guid bandId)
+        {
+            return Get<IEnumerable<Album>>($"bands/{bandId}/albums");
+        }
+
         public Task<Band> CreateBand(string name) 
             => Post<Band>("bands", new { name });
+
+        public Task<Band> UpdateBand(Guid id, string name)
+        {
+            return Put<Band>($"bands/{id}", new { name });
+        }
     }
 }

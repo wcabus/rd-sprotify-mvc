@@ -28,9 +28,18 @@ namespace Sprotify.Web.Areas.Administration.Controllers
         }
 
         // GET: Band/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(Guid id)
         {
-            return View();
+            var band = await _service.GetBandById(id);
+            if (band == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            var albums = await _service.GetAlbumsForBand(id);
+
+            ViewBag.Band = band;
+            return View(albums);
         }
 
         // GET: Band/Create
@@ -62,25 +71,36 @@ namespace Sprotify.Web.Areas.Administration.Controllers
         }
 
         // GET: Band/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(Guid id)
         {
-            return View();
+            var band = await _service.GetBandById(id);
+            if (band == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(band);
         }
 
         // POST: Band/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(Guid id, Band model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
             try
             {
-                // TODO: Add update logic here
-
+                await _service.UpdateBand(id, model.Name);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                ModelState.AddModelError("", e.Message);
+                return View(model);
             }
         }
 
