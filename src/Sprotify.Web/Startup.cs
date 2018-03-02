@@ -37,6 +37,7 @@ namespace Sprotify.Web
             services.AddScoped<SongService>();
             services.AddScoped<AlbumService>();
             services.AddScoped<BandService>();
+            services.AddScoped<PlayerService>();
 
             // Authentication
             services.AddAuthentication(options =>
@@ -65,7 +66,7 @@ namespace Sprotify.Web
                     options.ResponseType = "code id_token";
 
                     // Needed to automap the role claim
-                    options.ClaimActions.Add(new JsonKeyClaimAction("role", "role", "role"));
+                    options.ClaimActions.Add(new JsonKeyClaimAction("role", "role", "role")); // your boat
 
                     options.Events = new OpenIdConnectEvents
                     {

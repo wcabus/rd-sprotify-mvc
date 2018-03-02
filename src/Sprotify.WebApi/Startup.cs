@@ -54,7 +54,7 @@ namespace Sprotify.WebApi
             app.UseMvc();
         }
 
-        private void ConfigureAutoMapper()
+        public static void ConfigureAutoMapper()
         {
             AutoMapper.Mapper.Initialize(cfg =>
             {

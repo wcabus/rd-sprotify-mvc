@@ -25,7 +25,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sprotify.Web", "src\Sprotif
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "91. IDP", "91. IDP", "{CC4DCCAA-5337-41D8-9C9F-4C00E616BF5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sprotify.IDP", "src\Sprotify.IDP\Sprotify.IDP.csproj", "{7904ED3E-AD7E-49A8-BDCA-3D7FB1C4D303}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sprotify.IDP", "src\Sprotify.IDP\Sprotify.IDP.csproj", "{7904ED3E-AD7E-49A8-BDCA-3D7FB1C4D303}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sprotify.WebApi.Tests", "src\Sprotify.WebApi.Tests\Sprotify.WebApi.Tests.csproj", "{BE65EFA0-AB3D-4236-BBDB-EA391D406ADE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{7904ED3E-AD7E-49A8-BDCA-3D7FB1C4D303}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7904ED3E-AD7E-49A8-BDCA-3D7FB1C4D303}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7904ED3E-AD7E-49A8-BDCA-3D7FB1C4D303}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE65EFA0-AB3D-4236-BBDB-EA391D406ADE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE65EFA0-AB3D-4236-BBDB-EA391D406ADE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE65EFA0-AB3D-4236-BBDB-EA391D406ADE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE65EFA0-AB3D-4236-BBDB-EA391D406ADE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +74,7 @@ Global
 		{44651017-44E8-4D38-AFE8-2C246DCDFADA} = {A5C2A2FE-6F6B-4DFF-A9C9-0C189E824A67}
 		{423E12C2-20C7-47AB-9EE4-105EB912AADF} = {5C7BCCBF-A3D9-41AB-9400-A2456F177104}
 		{7904ED3E-AD7E-49A8-BDCA-3D7FB1C4D303} = {CC4DCCAA-5337-41D8-9C9F-4C00E616BF5B}
+		{BE65EFA0-AB3D-4236-BBDB-EA391D406ADE} = {F8BB9FCA-31CC-46A9-AA78-677F9FF84D41}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {19CE703D-21DC-4563-BB4F-2269AF5F2DDE}

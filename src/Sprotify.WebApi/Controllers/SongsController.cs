@@ -4,6 +4,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sprotify.Domain.Services;
+using Sprotify.WebApi.Models;
 using Sprotify.WebApi.Models.Songs;
 
 namespace Sprotify.WebApi.Controllers
@@ -22,10 +23,18 @@ namespace Sprotify.WebApi.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromQuery]string filter = null)
         {
-            var songs = await _songService.GetSongs();
+            var songs = await _songService.GetSongs(filter);
             return Ok(Mapper.Map<IEnumerable<Song>>(songs));
+        }
+
+        [HttpGet("search")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Search([FromQuery]string filter = null)
+        {
+            var songs = await _songService.GetSongs(filter);
+            return Ok(Mapper.Map<IEnumerable<SearchItem>>(songs));
         }
     }
 }

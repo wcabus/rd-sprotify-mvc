@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Sprotify.Domain.Services;
+using Sprotify.WebApi.Models;
 using Sprotify.WebApi.Models.Albums;
 
 namespace Sprotify.WebApi.Controllers
@@ -27,7 +28,7 @@ namespace Sprotify.WebApi.Controllers
         public async Task<IActionResult> GetAlbums([FromQuery]string filter = null) 
         {
             var albums = await _service.GetAlbums(filter);
-	        return Ok(Mapper.Map<IEnumerable<Album>>(albums));
+	        return Ok(Mapper.Map<IEnumerable<SearchItem>>(albums));
         }
 
         [HttpGet("{id:guid}", Name = nameof(GetAlbumById))]
