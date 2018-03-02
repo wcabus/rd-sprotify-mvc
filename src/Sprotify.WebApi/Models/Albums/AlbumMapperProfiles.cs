@@ -5,7 +5,15 @@
         public AlbumMapperProfiles()
         {
             CreateMap<Domain.Models.Album, Album>()
-                .ForMember(x => x.Band, opt => opt.MapFrom(x => x.Band.Name));
+                .ForMember(x => x.Band, opt => opt.MapFrom(src => src.Band.Name));
+
+            CreateMap<Domain.Models.Album, AlbumWithSongs>();
+
+            CreateMap<Domain.Models.AlbumSong, AlbumSong>()
+                .ForMember(x => x.Title, opt => opt.MapFrom(src => src.Song.Title))
+                .ForMember(x => x.Duration, opt => opt.MapFrom(src => src.Song.Duration))
+                .ForMember(x => x.ReleaseDate, opt => opt.MapFrom(src => src.Song.ReleaseDate))
+                .ForMember(x => x.ContainsExplicitLyrics, opt => opt.MapFrom(src => src.Song.ContainsExplicitLyrics));
 
             CreateMap<Domain.Models.Album, SearchItem>()
                 .ForMember(x => x.Name, opt => opt.MapFrom(src => src.Title))

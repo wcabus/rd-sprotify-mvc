@@ -9,7 +9,7 @@ namespace Sprotify.Domain.Repositories
     {
         Task<bool> Exists(Guid id);
         Task<Album> GetAlbumById(Guid id, bool includeSongs);
-        Task<IEnumerable<Album>> GetAlbumsForBand(Guid bandId);
+        Task<IEnumerable<Album>> GetAlbumsForBand(Guid bandId, bool includeSongs);
         Task<IEnumerable<Album>> GetAlbums(string filter);
     }
 

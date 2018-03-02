@@ -42,19 +42,29 @@ namespace Sprotify.WebApi.Controllers
 
             var album = await _service.GetAlbumById(id, includeSongs);
 
-            // TODO Refactor: includeSongs == true => Map to album with songs
+            if (includeSongs)
+            {
+                return Ok(Mapper.Map<AlbumWithSongs>(album));
+            }
+
             return Ok(Mapper.Map<Album>(album));
         }
 
         [HttpGet("/bands/{bandId:guid}/albums")]
-        public async Task<IActionResult> GetAlbumsForBand(Guid bandId)
+        public async Task<IActionResult> GetAlbumsForBand(Guid bandId, [FromQuery]bool includeSongs = false)
         {
             if (!await _service.BandExists(bandId))
             {
                 return NotFound();
             }
 
-            var albums = await _service.GetAlbumsForBand(bandId);
+            var albums = await _service.GetAlbumsForBand(bandId, includeSongs);
+
+            if (includeSongs)
+            {
+                return Ok(Mapper.Map<IEnumerable<AlbumWithSongs>>(albums));
+            }
+
             return Ok(Mapper.Map<IEnumerable<Album>>(albums));
         }
 

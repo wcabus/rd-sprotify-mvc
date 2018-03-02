@@ -23,10 +23,11 @@ namespace Sprotify.Web.Controllers
         [Route("/webplayer")]
         public async Task<IActionResult> Index()
         {
-            return View(new List<Playlist>());
+            return View(await _service.GetPlaylists());
         }
 
         [Route("/my/playlists")]
+        [Route("/user/playlists")]
         public async Task<IActionResult> Playlists()
         {
             return View(await _service.GetMyPlaylists(User.GetSubject()));
@@ -64,6 +65,15 @@ namespace Sprotify.Web.Controllers
         {
             var results = await _service.Search(filter);
             return View(results);
+        }
+
+        [Route("/band/{id:guid}")]
+        public async Task<IActionResult> Band(Guid id)
+        {
+            var band = await _service.GetBand(id);
+            var albums = await _service.GetAlbumsForBand(id);
+
+            return View("Band", new BandViewModel(band, albums));
         }
 
         [Route("/playlist/{id}")]

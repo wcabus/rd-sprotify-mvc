@@ -61,9 +61,9 @@ namespace Sprotify.Application.Services
             return _albumRepository.GetAlbumById(id, includeSongs);
         }
 
-        public Task<IEnumerable<Album>> GetAlbumsForBand(Guid bandId)
+        public Task<IEnumerable<Album>> GetAlbumsForBand(Guid bandId, bool includeSongs)
         {
-            return _albumRepository.GetAlbumsForBand(bandId);
+            return _albumRepository.GetAlbumsForBand(bandId, includeSongs);
         }
 
         public Task<IEnumerable<Album>> GetAlbums(string filter)

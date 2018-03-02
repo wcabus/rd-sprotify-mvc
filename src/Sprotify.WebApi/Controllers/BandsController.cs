@@ -50,11 +50,20 @@ namespace Sprotify.WebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            var band = await _bandService.CreateBand(model.Name);
+            Band band;
+            try
+            {
+                band = Mapper.Map<Band>(await _bandService.CreateBand(model.Name));
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError(nameof(model.Name), e.Message);
+                return BadRequest(ModelState);
+            }
 
             return CreatedAtRoute(nameof(GetBandById),
                 new { band.Id },
-                Mapper.Map<Band>(band));
+                band);
         }
 
         [HttpPut("{id:guid}")]

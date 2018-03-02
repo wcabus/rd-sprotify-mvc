@@ -34,6 +34,11 @@ namespace Sprotify.Application.Services
 
         public async Task<Band> CreateBand(string name)
         {
+            if (await _bandRepository.Exists(name).ConfigureAwait(false))
+            {
+                throw new Exception($"There already is a band called '{name}'");
+            }
+
             var band = new Band(name);
             _bandRepository.CreateBand(band);
             await _unitOfWork.SaveChanges().ConfigureAwait(false);

@@ -27,6 +27,11 @@ namespace Sprotify.DAL.Repositories
             return _context.Set<Band>().AnyAsync(x => x.Id == id);
         }
 
+        public Task<bool> Exists(string name)
+        {
+            return _context.Set<Band>().AnyAsync(x => x.Name == name);
+        }
+
         public Task<Band> GetBandById(Guid id)
         {
             return _context.Set<Band>().FirstOrDefaultAsync(x => x.Id == id);

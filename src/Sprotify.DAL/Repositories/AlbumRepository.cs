@@ -47,13 +47,18 @@ namespace Sprotify.DAL.Repositories
             return album;
         }
 
-        public async Task<IEnumerable<Album>> GetAlbumsForBand(Guid bandId)
+        public async Task<IEnumerable<Album>> GetAlbumsForBand(Guid bandId, bool includeSongs)
         {
-            return await _context.Set<Album>()
+            var query = _context.Set<Album>()
                 .Include(x => x.Band)
-                .Where(x => x.BandId == bandId)
-                .ToListAsync()
-                .ConfigureAwait(false);
+                .Where(x => x.BandId == bandId);
+
+            if (includeSongs)
+            {
+                query = query.Include(x => x.Songs).ThenInclude(x => x.Song);
+            }
+
+            return await query.ToListAsync().ConfigureAwait(false);
         }
 
         public async Task<IEnumerable<Album>> GetAlbums(string filter)

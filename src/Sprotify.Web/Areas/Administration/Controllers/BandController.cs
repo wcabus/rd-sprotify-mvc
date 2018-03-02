@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Sprotify.Web.Models;
 using Sprotify.Web.Services;
+using Sprotify.Web.Services.Core;
 
 namespace Sprotify.Web.Areas.Administration.Controllers
 {
@@ -62,8 +65,17 @@ namespace Sprotify.Web.Areas.Administration.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (BadRequestException e)
             {
+                // e.Message contains JSON error data, this needs to be parsed
+                var errors = JsonConvert.DeserializeObject<ApiError>(e.Message);
+                foreach (var key in errors.Keys)
+                {
+                    foreach (var error in errors[key]) {
+                        ModelState.TryAddModelError(key, error);
+                    }
+                }
+                
                 return View(model);
             }
         }

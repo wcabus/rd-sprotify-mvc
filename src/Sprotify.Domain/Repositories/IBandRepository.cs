@@ -11,5 +11,6 @@ namespace Sprotify.Domain.Repositories
         Task<Band> GetBandById(Guid id);
         Band CreateBand(Band band);
         Task<bool> Exists(Guid id);
+        Task<bool> Exists(string name);
     }
 }

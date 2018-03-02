@@ -65,5 +65,15 @@ namespace Sprotify.Web.Services
         {
             return Post<Playlist>("playlists", model);
         }
+
+        public Task<Band> GetBand(Guid id)
+        {
+            return Get<Band>($"bands/{id}");
+        }
+
+        public Task<IEnumerable<AlbumWithSongs>> GetAlbumsForBand(Guid id)
+        {
+            return Get<IEnumerable<AlbumWithSongs>>($"bands/{id}/albums?includeSongs=true");
+        }
     }
 }
