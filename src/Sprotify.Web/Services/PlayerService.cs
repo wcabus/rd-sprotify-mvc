@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Sprotify.Web.Models;
@@ -20,6 +21,11 @@ namespace Sprotify.Web.Services
             var songs = await Get<IEnumerable<SearchItem>>($"songs/search?filter={filter}").ConfigureAwait(false);
 
             return new SearchResult(filter, bands, albums, songs);
+        }
+
+        public Task<IEnumerable<Playlist>> GetMyPlaylists(Guid userId)
+        {
+            return Get<IEnumerable<Playlist>>($"users/{userId}/playlists");
         }
     }
 }
