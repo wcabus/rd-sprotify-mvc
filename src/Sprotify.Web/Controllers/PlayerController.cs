@@ -32,6 +32,26 @@ namespace Sprotify.Web.Controllers
             return View(await _service.GetMyPlaylists(User.GetSubject()));
         }
 
+        [Route("/my/playlists/add")]
+        public IActionResult CreatePlaylist()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Route("/my/playlists/add")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreatePlaylist(CreatePlaylistModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            await _service.CreatePlaylist(model);
+            return RedirectToAction(nameof(Playlists));
+        }
+
         [Route("/search")]
         public async Task<IActionResult> Search()
         {
